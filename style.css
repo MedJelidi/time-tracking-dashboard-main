@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
+:root {
+    /* Colors */
+    /* Primary */
+    --blue: hsl(246, 80%, 60%);
+    --light-red-work: hsl(15, 100%, 70%);
+    --soft-blue: hsl(195, 74%, 62%);
+    --light-red-study: hsl(348, 100%, 68%);
+    --lime-green: hsl(145, 58%, 55%);
+    --violet: hsl(264, 64%, 52%);
+    --soft-orange: hsl(43, 84%, 65%);
+    /* Neutral */
+    --very-dark-blue: hsl(226, 43%, 10%);
+    --dark-blue: hsl(235, 46%, 20%);
+    --desaturated-blue: hsl(235, 45%, 61%);
+    --pale-blue: hsl(236, 100%, 87%);
+    /* Font Sizes */
+    --font-size: 18px;
+    /* Font Families */
+    --family: 'Rubik', sans-serif;
+    /* Font Weights */
+    --bold: 300;
+    --bolder: 400;
+    --boldest: 500;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 50px 15px;
+    background-color: var(--very-dark-blue);
+    height: 100%;
+    color: white;
+    font-family: var(--family);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.container {
+    width: 329px;
+    min-width: 329px;
+    height: 100%;
+    display: grid;
+    grid-auto-rows: 125px;
+    row-gap: 60px;
+    padding: 70px 0;
+}
+
+.card {
+    background-color: var(--dark-blue);
+    border-radius: 15px;
+    position: relative;
+    display: grid;
+    grid-template-areas: "header menu" "hours last";
+    padding: 30px 25px;
+    grid-template-rows: 25px 35px;
+    align-items: center;
+}
+
+.card:not(.main-card) {
+    cursor: pointer;
+}
+
+.main-card {
+    grid-template-areas: "daily weekly monthly";
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    padding: 0;
+    grid-template-rows: none;
+    align-items: initial;
+    padding-top: 55px;
+}
+
+.trackers {
+    display: grid;
+    grid-auto-rows: 125px;
+    row-gap: 60px;
+}
+
+.card>* {
+    margin: 0;
+}
+
+.card-header {
+    position: absolute;
+    width: 100%;
+    height: 75px;
+    top: -35px;
+    left: 0;
+    z-index: -1;
+    border-radius: 15px;
+    background-repeat: no-repeat;
+    background-position: 95% -10px;
+}
+
+.main-card>.card-header {
+    z-index: 0;
+    height: 125px;
+    top: -70px;
+    background-color: var(--blue);
+    padding: 25px;
+    display: grid;
+    grid-template-areas: "avatar info";
+    grid-template-columns: 70px 75%;
+    align-items: center;
+}
+
+.avatar {
+    grid-area: avatar;
+    border: 3px white solid;
+    width: 100%;
+    border-radius: 50%;
+}
+
+.info {
+    grid-area: info;
+    margin-left: 17px;
+    display: grid;
+    row-gap: 3px;
+}
+
+.info>span {
+    font-size: 14px;
+    color: var(--pale-blue);
+}
+
+.info>h2 {
+    margin: 0;
+    font-weight: var(--bold);
+}
+
+.header {
+    grid-area: header;
+    justify-self: flex-start;
+}
+
+.menu {
+    grid-area: menu;
+    justify-self: flex-end;
+}
+
+.hours {
+    grid-area: hours;
+    justify-self: flex-start;
+    font-weight: var(--bold);
+}
+
+.last {
+    grid-area: last;
+    justify-self: flex-end;
+    font-weight: var(--bolder);
+    color: var(--pale-blue);
+}
+
+.period {
+    font-weight: var(--bolder);
+    color: var(--desaturated-blue);
+    z-index: 1;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.selected,
+.period:hover {
+    color: white;
+}
+
+.menu:hover>path {
+    fill: white;
+}
+
+.card:not(.main-card):hover {
+    background-color: hsl(235deg 48% 29%);
+}
+
+@media screen and (min-width: 1045px) {
+    body {
+        height: 100vh;
+    }
+    .container {
+        grid-template-areas: "main trackers";
+        width: fit-content;
+        height: fit-content;
+        grid-auto-rows: auto;
+        column-gap: 30px;
+    }
+    .main-card {
+        grid-area: main;
+        grid-template-areas: "daily" "weekly" "monthly";
+        grid-template-columns: none;
+        width: 225px;
+        padding-top: 280px;
+        padding-left: 30px;
+        padding-bottom: 20px;
+    }
+    .main-card>.card-header {
+        top: -35px;
+        height: 300px;
+        grid-template-areas: "avatar" "info";
+        grid-template-columns: none;
+        grid-template-rows: 70px;
+        align-items: flex-start;
+        row-gap: 35px;
+    }
+    .trackers {
+        grid-area: trackers;
+        grid-template-columns: 225px 225px 225px;
+        grid-template-rows: 180px 180px;
+        column-gap: 30px;
+        height: max-content;
+        width: fit-content;
+    }
+    .period {
+        justify-self: flex-start;
+    }
+    .avatar {
+        max-width: 70px;
+    }
+    .info {
+        margin-left: 0;
+    }
+    .info>h2 {
+        font-size: 33px;
+    }
+    .card:not(.main-card) {
+        grid-template-areas: "header menu" "hours none" "last none";
+        grid-template-rows: 25px 73px 35px;
+    }
+    .hours {
+        font-size: 45px;
+        align-self: end;
+    }
+    .last {
+        justify-self: start;
+    }
+}
